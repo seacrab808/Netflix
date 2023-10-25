@@ -31,6 +31,11 @@ const Logo = styled.span`
 const LeftLink = styled.span`
   margin-left: 25px;
   font-size: 15px;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const NavRight = styled.div`

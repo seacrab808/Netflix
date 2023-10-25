@@ -17,7 +17,7 @@ const Header = styled.header`
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 350px;
+  top: 330px;
   left: 100px;
 `;
 
@@ -41,6 +41,7 @@ const Btn = styled.div`
 `;
 
 const Play = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,6 +53,7 @@ const Play = styled.button`
   border: none;
   transition: 0.1s;
 
+  z-index: 9;
   svg {
     width: 35px;
     margin-right: 5px;
@@ -63,6 +65,7 @@ const Play = styled.button`
 `;
 
 const Detail = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,6 +77,7 @@ const Detail = styled.button`
   border-radius: 5px;
   border: none;
   transition: 0.1s;
+  z-index: 9;
 
   svg {
     width: 35px;

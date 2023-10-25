@@ -7,13 +7,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
+import MovieModal from "./MovieModal";
 
 const Container = styled.div`
+  position: relative;
+
   .swiper {
     width: 100%;
     height: 100%;
     -webkit-user-select: none;
     margin-top: 15px;
+    cursor: pointer;
   }
 
   .swiper-slide {
@@ -39,6 +43,11 @@ const Container = styled.div`
     border-radius: 5px;
   }
 
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #fff;
+  }
+
   .swiper-pagination {
     position: relative;
     top: 0;
@@ -61,16 +70,22 @@ const Container = styled.div`
 
 const Row = ({ id, fetchUrl }) => {
   const [movies, setMovies] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [movieSelected, setMovieSelected] = useState({});
 
   const fetchMovieData = useCallback(async () => {
     const response = await axiosInstance.get(fetchUrl);
     setMovies(response.data.results);
-    console.log(response);
   }, [fetchUrl]);
 
   useEffect(() => {
     fetchMovieData();
   }, [fetchMovieData]);
+
+  const handleClick = (movie) => {
+    setModalOpen(true);
+    setMovieSelected(movie);
+  };
 
   return (
     <Container>
@@ -93,10 +108,15 @@ const Row = ({ id, fetchUrl }) => {
                 className="row__poster"
                 src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                 alt={movie.name}
+                onClick={() => handleClick(movie)}
               />
             </SwiperSlide>
           ))}
       </Swiper>
+
+      {isModalOpen && (
+        <MovieModal setIsModalOpen={setModalOpen} {...movieSelected} />
+      )}
     </Container>
   );
 };

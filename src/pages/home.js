@@ -4,8 +4,6 @@ import Row from "../components/Row";
 import requests from "../api/requests";
 import styled from "styled-components";
 
-const Wrapper = styled.main``;
-
 const Trending = styled.div`
   position: relative;
   top: 60vh;
@@ -19,11 +17,12 @@ const Title = styled.h1`
 const RowWrap = styled.div`
   margin-top: 25px;
   margin-bottom: 50px;
+  position: relative;
 `;
 
 const Home = () => {
   return (
-    <Wrapper>
+    <>
       <Banner />
       <Trending>
         <RowWrap>
@@ -40,7 +39,7 @@ const Home = () => {
           <Row id="TR" fetchUrl={requests.fetchTopRated} />
         </RowWrap>
       </Trending>
-    </Wrapper>
+    </>
   );
 };
 
